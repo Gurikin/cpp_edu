@@ -15,19 +15,19 @@ int main(int, char **) {
   int noCnt = 0;
   bool endAdventure = false;
   while (noCnt < 3) {
-    cin >> wantEntire;
-    if (wantEntire != 'y' && wantEntire != 'n') {
-      cout << "Я понимаю только y/n";
-      continue;
-    }
     if ('y' == wantEntire) {
       cout << "Не буду вас отговаривать.\n"
            << "Я видел как ваш товарищ спустился туда в поисках подземного "
               "источника воды.\n"
            << "Я пойду с тобой и мы попробуем остаться в живых." << endl;
       break;
-    } else {
-      int lastCnt = 2 - noCnt;
+    } else if ('n' == wantEntire) {
+      noCnt++;
+      if (noCnt >= 3) {
+        endAdventure = true;
+        break;
+      }
+      int lastCnt = 3 - noCnt;
       ostringstream question;
       if (lastCnt <= 1) {
         question << "Спрашиваю последний раз:";
@@ -38,12 +38,11 @@ int main(int, char **) {
       cout << "А вы разве не ищете своего товарища?\nЯ видел как он спустился "
               "туда в поисках подземного источника воды."
            << endl;
-      question.clear();
-      noCnt++;
-      if (noCnt >= 3) {
-        endAdventure = true;
-        break;
-      }
+    }
+    cin >> wantEntire;
+    if (wantEntire != 'y' && wantEntire != 'n') {
+      cout << "Я понимаю только y/n";
+      continue;
     }
   }
   if (endAdventure) {

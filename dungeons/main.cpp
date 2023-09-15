@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <cstring>
 #include <iostream>
 #include <ostream>
@@ -11,10 +12,11 @@ struct dices {
 };
 
 struct dices dices() {
+  srand((unsigned)time(0));
   struct dices dcs;
-  dcs.arr[0] = random()%(6 - 1 + 1) + 1;
-  dcs.arr[1] = random()%(6 - 1 + 1) + 1;
-  dcs.arr[2] = random()%(6 - 1 + 1) + 1;
+  dcs.arr[0] = 1 + rand() % 6;
+  dcs.arr[1] = 1 + rand() % 6;
+  dcs.arr[2] = 1 + rand() % 6;
   return dcs;
 }
 
@@ -53,7 +55,7 @@ int main(int, char **) {
     }
     cin >> wantEntire;
     if (wantEntire != 'y' && wantEntire != 'n') {
-      cout << "Я понимаю только y/n";
+      cout << "Я понимаю только y/n" << endl;
       continue;
     }
   }
@@ -66,6 +68,6 @@ int main(int, char **) {
   }
   struct dices d = dices();
   for (int i = 0; i < 3; i++) {
-      cout << d.arr[i] << endl;
+    cout << d.arr[i] << endl;
   }
 }

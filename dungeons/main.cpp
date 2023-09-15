@@ -20,6 +20,28 @@ struct dices dices() {
   return dcs;
 }
 
+int takePersonsBeforeDown() {
+  cout << "Уже довольно темно. Подскажи, сколько вас всего?" << endl;
+  int persons = 0;
+  while (persons <= 0) {
+    cin.clear();
+    cin.ignore(10000, '\n');
+    cin >> persons;
+    if (cin.fail()) {
+      cout << "Чегоооо?!" << endl
+           << "Кхмхмх. Скажи ещё раз, пожалуйста. Я не расслышал." << endl;
+    }
+  }
+  return persons;
+}
+
+void waitEnter() {
+  cout << "Press ENTER..." << endl;
+  cin.clear();
+  cin.ignore(10000, '\n');
+  cin.get();
+}
+
 int main(int, char **) {
   system("clear");
   cout << "Приветствую, путники! Вы действительно хотите войти в это "
@@ -66,6 +88,10 @@ int main(int, char **) {
     cout << "Ну что ж, тогда - прощайте!\n"
          << "Надеюсь смерть вашего товарища не сильно вас огорчит." << endl;
   }
+  int personsNum = takePersonsBeforeDown();
+  cout << "Ну пойдем." << endl;
+  waitEnter();
+  cout << "Кидаем кубики..." << endl;
   struct dices d = dices();
   for (int i = 0; i < 3; i++) {
     cout << d.arr[i] << endl;

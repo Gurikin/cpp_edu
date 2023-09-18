@@ -1,19 +1,21 @@
+#include <cstdio>
 #include <cstdlib>
 #include <cstring>
 #include <iostream>
+#include <limits>
 #include <ostream>
 #include <sstream>
 #include <string>
 
 using namespace std;
 
-struct dices {
+struct Dices {
   int arr[3];
 };
 
-struct dices dices() {
+struct Dices dices() {
   srand((unsigned)time(0));
-  struct dices dcs;
+  struct Dices dcs;
   dcs.arr[0] = 1 + rand() % 6;
   dcs.arr[1] = 1 + rand() % 6;
   dcs.arr[2] = 1 + rand() % 6;
@@ -21,11 +23,12 @@ struct dices dices() {
 }
 
 int takePersonsBeforeDown() {
+  system("clear");
   cout << "Уже довольно темно. Подскажи, сколько вас всего?" << endl;
   int persons = 0;
   while (persons <= 0) {
     cin.clear();
-    cin.ignore(10000, '\n');
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cin >> persons;
     if (cin.fail()) {
       cout << "Чегоооо?!" << endl
@@ -36,9 +39,9 @@ int takePersonsBeforeDown() {
 }
 
 void waitEnter() {
-  cout << "Press ENTER..." << endl;
+  cout << "Go down? [Press Space, than Enter...]" << endl;
   cin.clear();
-  cin.ignore(10000, '\n');
+  cin.ignore(numeric_limits<streamsize>::max(), '\n');
   cin.get();
 }
 
@@ -52,6 +55,7 @@ int main(int, char **) {
   bool endAdventure = false;
   while (noCnt < 3) {
     if ('y' == wantEntire) {
+      system("clear");
       cout << "Не буду вас отговаривать.\n"
            << "Я видел как ваш товарищ спустился туда в поисках подземного "
               "источника воды.\n"
@@ -70,6 +74,7 @@ int main(int, char **) {
       } else {
         question << "Я спрошу ещё только " << lastCnt << " раз:";
       }
+      system("clear");
       cout << question.str() << endl;
       cout << "А вы разве не ищете своего товарища?\nЯ видел как он спустился "
               "туда в поисках подземного источника воды."
@@ -82,17 +87,19 @@ int main(int, char **) {
     }
   }
   if (endAdventure) {
-    cout << "========================================"
-         << "========================================";
-    cout << endl << endl;
+    system("clear");
     cout << "Ну что ж, тогда - прощайте!\n"
          << "Надеюсь смерть вашего товарища не сильно вас огорчит." << endl;
+    waitEnter();
+    return 0;
   }
+  waitEnter();
   int personsNum = takePersonsBeforeDown();
   cout << "Ну пойдем." << endl;
   waitEnter();
+  system("clear");
   cout << "Кидаем кубики..." << endl;
-  struct dices d = dices();
+  struct Dices d = dices();
   for (int i = 0; i < 3; i++) {
     cout << d.arr[i] << endl;
   }

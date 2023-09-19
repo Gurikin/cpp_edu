@@ -42,7 +42,9 @@ void waitEnter() {
   cout << "Go down? [Press Space, than Enter...]" << endl;
   cin.clear();
   cin.ignore(numeric_limits<streamsize>::max(), '\n');
-  cin.get();
+  while (getchar() != ' ') {
+    cout << "Не можем продолжить без пробела." << endl;
+  }
 }
 
 int main(int, char **) {

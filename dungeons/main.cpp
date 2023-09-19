@@ -39,7 +39,7 @@ int takePersonsBeforeDown() {
 }
 
 void waitEnter() {
-  cout << "Go down? [Press Space, than Enter...]" << endl;
+  cout << "Спускаемся? <Нажми [Пробел], затем [Enter]...>" << endl;
   cin.clear();
   cin.ignore(numeric_limits<streamsize>::max(), '\n');
   while (getchar() != ' ') {
